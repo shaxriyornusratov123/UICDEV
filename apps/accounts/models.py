@@ -10,7 +10,12 @@ from apps.common.models import BaseModel
 
 
 class User(AbstractBaseUser, PermissionsMixin, BaseModel):
-    phone = models.CharField(_("phone"), max_length=20, unique=True, validators=[RegexValidator(r"^\+?1?\d{9,15}$")])
+    phone = models.CharField(
+        _("phone"),
+        max_length=20,
+        unique=True,
+        validators=[RegexValidator(r"^\+?1?\d{9,15}$")],
+    )
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
     avatar = models.ForeignKey(

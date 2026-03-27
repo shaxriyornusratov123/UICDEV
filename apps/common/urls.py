@@ -1,9 +1,23 @@
 from django.urls import path
 
-from .views import healthcheck
-
-app_name = "common"
+from apps.common.apis import (
+    CountryListCreateAPIView,
+    CountryRetrieveUpdateDestroyAPIView,
+    RegionListCreateAPIView,
+    RegionRetrieveUpdateDestroyAPIView,
+)
 
 urlpatterns = [
-    path("health/", healthcheck, name="health"),
+    path("countries/", CountryListCreateAPIView.as_view(), name="country-list"),
+    path(
+        "countries/<int:pk>/",
+        CountryRetrieveUpdateDestroyAPIView.as_view(),
+        name="country-detail",
+    ),
+    path("regions/", RegionListCreateAPIView.as_view(), name="region-list"),
+    path(
+        "regions/<int:pk>/",
+        RegionRetrieveUpdateDestroyAPIView.as_view(),
+        name="region-detail",
+    ),
 ]
