@@ -1,11 +1,16 @@
 from django.urls import path
 
-from apps.courses.apis import (
+from apps.courses.views import (
     CategoryRetrieveUpdateDestroyAPIView,
     CategoryListCreateAPIView,
     TagRetrieveUpdateDestroyAPIView,
     TagListCreateAPIView,
     CourseListCreateAPIView,
+    CourseRetrieveUpdateDestroyAPIView,
+    ModuleListCreateAPIView,
+    ModuleRetrieveUpdateDestroyAPIView,
+    LessonRetrieveUpdateDestroyAPIView,
+    LessonListCreateAPIView,
 )
 
 urlpatterns = [
@@ -21,10 +26,22 @@ urlpatterns = [
         TagRetrieveUpdateDestroyAPIView.as_view(),
         name="tag-detail",
     ),
-    path("courses/", CourseListCreateAPIView.as_view(), name="course-list"),
-    # path(
-    #     "courses/<int:pk>/",
-    #     CourseRetrieveUpdateDestroyAPIView.as_view(),
-    #     name="course-detail",
-    # )
+    path("", CourseListCreateAPIView.as_view(), name="course-list"),
+    path(
+        "<int:pk>/",
+        CourseRetrieveUpdateDestroyAPIView.as_view(),
+        name="course-detail",
+    ),
+    path("", ModuleListCreateAPIView.as_view(), name="module-list"),
+    path(
+        "<int:pk>/",
+        ModuleRetrieveUpdateDestroyAPIView.as_view(),
+        name="module-detail",
+    ),
+    path("", LessonListCreateAPIView.as_view(), name="lesson-list"),
+    path(
+        "<int:pk>/",
+        LessonRetrieveUpdateDestroyAPIView.as_view(),
+        name="lesson-detail",
+    ),
 ]

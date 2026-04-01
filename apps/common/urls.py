@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.common.apis import (
+from apps.common.views import (
     CountryListCreateAPIView,
     CountryRetrieveUpdateDestroyAPIView,
     RegionListCreateAPIView,

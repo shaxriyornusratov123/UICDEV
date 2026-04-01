@@ -5,7 +5,7 @@ from apps.common.models import Country, Media, Region
 
 @admin.register(Media)
 class MediaAdmin(admin.ModelAdmin):
-    list_display = ["id", "file_url", "created_at"]
+    list_display = ["id", "file", "created_at"]
     search_fields = ["file_url"]
 
 

@@ -139,8 +139,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
     "PAGE_SIZE": 50,
 }
+
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "UICDev API",
@@ -148,4 +152,9 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
     # OTHER SETTINGS
+    "COMPONENT_SPLIT_REQUEST": True,
 }
+
+
+ONEID_USERNAME = "nusratovuser"
+ONEID_PASSWORD = "nusratovadmin7446"

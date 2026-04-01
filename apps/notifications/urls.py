@@ -1,9 +1,19 @@
 from django.urls import path
 
-from .views import healthcheck
-
-app_name = "notifications"
+from apps.notifications.views import (
+    NotificationListCreateAPIView,
+    NotificationRetrieveUpdateDestroyAPIView,
+)
 
 urlpatterns = [
-    path("health/", healthcheck, name="health"),
+    path(
+        "notifications/",
+        NotificationListCreateAPIView.as_view(),
+        name="notification-list",
+    ),
+    path(
+        "notifications/<int:pk>/",
+        NotificationRetrieveUpdateDestroyAPIView.as_view(),
+        name="notification-detail",
+    ),
 ]
