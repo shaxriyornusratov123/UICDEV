@@ -1,4 +1,5 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import AllowAny
 
 from apps.courses.models import Category
 from apps.courses.serializers import CategorySerializer
@@ -7,6 +8,7 @@ from apps.courses.serializers import CategorySerializer
 class CategoryListCreateAPIView(ListCreateAPIView):
     queryset = Category.objects.all().order_by("name")
     serializer_class = CategorySerializer
+    permission_classes = [AllowAny]
 
 
 class CategoryRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):

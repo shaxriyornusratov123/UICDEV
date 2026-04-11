@@ -3,4 +3,8 @@ from .lessonquestion import LessonQuestionSerializer
 from .userhomeworkattempt import UserHomeworkAttemptSerializer
 
 
-__all__ = ["EnrollmentSerializers", "LessonQuestionSerializer","UserHomeworkAttemptSerializer"]
+__all__ = [
+    "EnrollmentSerializers",
+    "LessonQuestionSerializer",
+    "UserHomeworkAttemptSerializer",
+]

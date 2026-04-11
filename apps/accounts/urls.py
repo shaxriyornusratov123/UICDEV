@@ -20,7 +20,7 @@ urlpatterns = [
         EducationRetrieveUpdateDestroyAPIView.as_view(),
         name="education-detail",
     ),
-    path("auhtors/", AuthorListCreateAPIView.as_view(), name="auhtor-list"),
+    path("authors/", AuthorListCreateAPIView.as_view(), name="author-list"),
     path(
         "authors/<int:pk>/",
         AuthorRetrieveUpdateDestroyAPIView.as_view(),
@@ -42,7 +42,7 @@ urlpatterns = [
         name="usereducation-list",
     ),
     path(
-        "usercertificate/<int:pk>/",
+        "usereducation/<int:pk>/",
         UserEducationRetrieveUpdateDestroyAPIView.as_view(),
         name="usereducation-detail",
     ),

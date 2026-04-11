@@ -5,6 +5,8 @@ from apps.common.views import (
     CountryRetrieveUpdateDestroyAPIView,
     RegionListCreateAPIView,
     RegionRetrieveUpdateDestroyAPIView,
+    TestTaskAPIView,
+    ImportDataAPIView,
 )
 
 urlpatterns = [
@@ -19,5 +21,11 @@ urlpatterns = [
         "regions/<int:pk>/",
         RegionRetrieveUpdateDestroyAPIView.as_view(),
         name="region-detail",
+    ),
+    path("testtask/", TestTaskAPIView.as_view(), name="testtask"),
+    path(
+        "import-country-regions/",
+        ImportDataAPIView.as_view(),
+        name="import-country-regions",
     ),
 ]

@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
+from django.utils.translation import gettext_lazy as _
 
 from .jazzmin_conf import JAZZMIN_SETTINGS  # noqa
 
@@ -42,7 +43,15 @@ LOCAL_APPS = [
     "apps.notifications",
 ]
 
-EXTERNAL_APPS = ["jazzmin", "rest_framework", "drf_spectacular"]
+EXTERNAL_APPS = [
+    "jazzmin",
+    "rest_framework",
+    "drf_spectacular",
+    "rest_framework_simplejwt",
+    "rosetta",
+    "modeltranslation",
+    "django_celery_beat",
+]
 
 AUTH_USER_MODEL = "accounts.User"
 
@@ -54,6 +63,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -94,6 +104,14 @@ DATABASES = {
 }
 
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/2",
+    }
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -123,6 +141,17 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+
+LANGUAGES = [
+    ("uz", _("Uzbek")),
+    ("ru", _("Russian")),
+    ("en", _("English")),
+]
+
+LOCALE_PATHS = (BASE_DIR / "locale",)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
 
 
 # Static files (CSS, JavaScript, Images)
@@ -158,3 +187,8 @@ SPECTACULAR_SETTINGS = {
 
 ONEID_USERNAME = "nusratovuser"
 ONEID_PASSWORD = "nusratovadmin7446"
+
+CELERY_TIMEZONE = "UTC"
+CELERY_TASK_TRACK_STARTED = TrueCELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = "redis://localhost:6379/10"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/9"

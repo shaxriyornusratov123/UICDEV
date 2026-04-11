@@ -19,7 +19,7 @@ class Media(BaseModel):
         verbose_name_plural = _("media")
 
     def __str__(self):
-        return self.file_url
+        return f"{self.file.url}"
 
 
 class Country(BaseModel):
@@ -34,6 +34,9 @@ class Country(BaseModel):
 
 
 class Region(BaseModel):
+    country = models.ForeignKey(
+        Country, on_delete=models.CASCADE, null=True, blank=True, related_name="regions"
+    )
     name = models.CharField(_("name"), max_length=100)
 
     class Meta:
